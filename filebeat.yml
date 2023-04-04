@@ -1,0 +1,19 @@
+filebeat.inputs:                                                                                                                                                                             
+- type: log                                                                                                                                                                                  
+  paths:                                                                                                                                                                                     
+    - /dev/stdout/*.log
+    - /dev/stderr/*.log                                                                                                                                                                  
+- type: log                                                                                                                                                                                  
+  paths:                                                                                                                                                                                     
+    - /var/log/filebeat/filebeat*                                                                                                                                                            
+  include_lines: ['Cannot index event.', 'Error decoding JSON']                                                                                                                              
+processors:                                                                                                                                                                                  
+- add_cloud_metadata: ~                                                                                                                                                                      
+- add_fields:                                                                                                                                                                                
+    target: tenant                                                                                                                                                                           
+    fields:                                                                                                                                                                                  
+      name: '${TENANT_NAME:unknown}'                                                                                                                                                                          
+      id: '${TENANT_ID:unknown}'                                                                                                                                                                                
+      app: '${APP_NAME:unknown}'                                                                                                                                                                         
+output.elasticsearch:                                                                                                                                                                        
+  hosts: '${ELASTIC_HOST}'
