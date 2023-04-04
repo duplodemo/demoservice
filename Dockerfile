@@ -41,6 +41,9 @@ RUN apt-get install -y awscli
 RUN apt-get install -y openssh-client
 RUN pip install setuptools awscli
 
+##
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.2-amd64.deb
+RUN dpkg -i filebeat-7.11.2-amd64.deb
 
 ##
 RUN apt-get clean && \
