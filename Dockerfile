@@ -44,6 +44,7 @@ RUN pip install setuptools awscli
 ##
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.2-amd64.deb
 RUN dpkg -i filebeat-7.11.2-amd64.deb
+ADD filebeat.yml /etc/filebeat/filebeat.yml
 
 ##
 RUN apt-get clean && \
