@@ -1,12 +1,7 @@
 filebeat.inputs:                                                                                                                                                                             
 - type: log                                                                                                                                                                                  
   paths:                                                                                                                                                                                     
-    - /dev/stdout/*.log
-    - /dev/stderr/*.log                                                                                                                                                                  
-- type: log                                                                                                                                                                                  
-  paths:                                                                                                                                                                                     
-    - /var/log/filebeat/filebeat*                                                                                                                                                            
-  include_lines: ['Cannot index event.', 'Error decoding JSON']                                                                                                                              
+    - /var/log/*.log                                                                                                                      
 processors:                                                                                                                                                                                  
 - add_cloud_metadata: ~                                                                                                                                                                      
 - add_fields:                                                                                                                                                                                
